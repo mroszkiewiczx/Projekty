@@ -1,0 +1,956 @@
+{
+  "app": {
+    "name": "AI.School",
+    "tagline": "AI-powered education platform"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "error": "An error occurred",
+    "retry": "Try again",
+    "submit": "Submit",
+    "modelAi": "AI Model",
+    "modelDefault": "Default (recommended)"
+  },
+  "auth": {
+    "login": "Sign in",
+    "loginTitle": "Sign in to AI.School",
+    "logout": "Sign out",
+    "register": "Create account",
+    "registerTitle": "Create your AI.School account",
+    "email": "Email address",
+    "password": "Password",
+    "passwordConfirm": "Confirm password",
+    "forgotPassword": "Forgot password?",
+    "resetPassword": "Reset password",
+    "resetTitle": "Password recovery",
+    "resetSent": "If the account exists, we sent a password reset link to the given address.",
+    "newPassword": "New password",
+    "setNewPassword": "Set new password",
+    "passwordChanged": "Password changed. You can sign in now.",
+    "noAccount": "No account?",
+    "hasAccount": "Already have an account?",
+    "registerSuccess": "Account created. Check your inbox to confirm registration.",
+    "errors": {
+      "invalidCredentials": "Invalid email or password.",
+      "emailRequired": "Enter your email address.",
+      "emailInvalid": "Invalid email format.",
+      "passwordRequired": "Enter your password.",
+      "passwordTooShort": "Password must be at least 8 characters.",
+      "passwordMismatch": "Passwords do not match.",
+      "generic": "Operation failed. Please try again."
+    }
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome back",
+    "heroSubtitle": "Your AI.School command center — generate lessons, syllabi and assess works with AI.",
+    "modules": "Modules",
+    "noModules": "No modules available in this workspace.",
+    "openModule": "Open",
+    "desc": {
+      "lessongen": "Create multimedia lesson plans with AI.",
+      "syllabusgen": "Generate Format A syllabi compliant with PKA.",
+      "edueval": "Assess works — the final grade is approved by a human.",
+      "pdf_intake": "Upload PDF works and extract text for assessment.",
+      "edueval_batch": "Mass-assess many works at once (up to 1000) with a summary report.",
+      "orgsheet": "Plan the school's hourly budget — classes, teachers, assignments and FTEs with AI."
+    }
+  },
+  "workspace": {
+    "active": "Active workspace",
+    "select": "Select workspace",
+    "none": "No workspace",
+    "noneDescription": "You do not belong to any workspace yet.",
+    "adminCreateHint": "As a platform administrator, you can create a new workspace for a university or client.",
+    "askInvitation": "You do not belong to any workspace yet. Ask the platform administrator to create a workspace and invite you.",
+    "create": "Create workspace",
+    "createName": "Workspace name",
+    "createSuccess": "Workspace created.",
+    "role": "Role"
+  },
+  "modules": {
+    "lessongen": "Lesson generator",
+    "syllabusgen": "Syllabus generator",
+    "edueval": "Work assessment",
+    "pdf_intake": "PDF work intake",
+    "edueval_batch": "Work batches",
+    "pkadoc": "PKA documentation",
+    "orgsheet": "Organization sheet",
+    "integration_hub": "Integrations",
+    "billing": "Billing",
+    "team": "Team",
+    "platform": "Platform panel"
+  },
+  "language": {
+    "label": "Language",
+    "pl": "Polish",
+    "en": "English"
+  },
+  "lessongen": {
+    "title": "Lesson generator",
+    "subtitle": "Create lesson plans aligned with the curriculum",
+    "mode": {
+      "simple": "Simple",
+      "advanced": "Advanced"
+    },
+    "form": {
+      "topicSection": "Lesson topic",
+      "topic": "Lesson topic",
+      "topicPlaceholder": "e.g. Photosynthesis, Linear equations, French Revolution...",
+      "subject": "Subject",
+      "selectSubject": "Select subject",
+      "level": "Level / target group",
+      "educationLevel": "Education level",
+      "selectLevel": "Select level",
+      "grade": "Grade",
+      "selectGrade": "Select grade",
+      "lessonType": "Lesson type",
+      "duration": "Lesson duration",
+      "customDuration": "Custom...",
+      "customDurationPlaceholder": "Enter duration in minutes",
+      "objectives": "Additional objectives (optional)",
+      "objectivesPlaceholder": "Enter additional objectives from the teacher...",
+      "provider": "AI model",
+      "generate": "Generate lesson plan"
+    },
+    "analysis": {
+      "title": "Topic analysis",
+      "analyzing": "Analysing topic...",
+      "level": "Level",
+      "grade": "Grade",
+      "sections": "Suggested sections"
+    },
+    "curriculum": {
+      "title": "Curriculum alignment",
+      "match": "Match requirements",
+      "noMatch": "No clear curriculum requirement found for this topic.",
+      "noMatchHint": "You can generate a general lesson — it will be marked as not linked to the curriculum.",
+      "relevance": "Relevance",
+      "selectedCount": "{{count}} requirements selected"
+    },
+    "lessonType": {
+      "wprowadzajaca": "Introductory",
+      "utrwalajaca": "Consolidation",
+      "powtorzeniowa": "Revision",
+      "cwiczeniowa": "Practice",
+      "problemowa": "Problem-based",
+      "projektowa": "Project-based",
+      "laboratoryjna": "Laboratory",
+      "odwrocona": "Flipped classroom"
+    },
+    "difficulty": {
+      "label": "Difficulty level",
+      "latwy": "Easy",
+      "sredni": "Medium",
+      "trudny": "Hard"
+    },
+    "result": {
+      "summary": "Summary",
+      "objectives": "Learning objectives",
+      "mainObjectives": "Main objectives",
+      "operationalObjectives": "Operational objectives",
+      "objectivesInStudentLanguage": "Objectives in student language (WILF)",
+      "successCriteria": "Success criteria",
+      "teachingMethods": "Teaching methods",
+      "didacticMaterials": "Didactic materials",
+      "lessonFlow": "Lesson flow",
+      "lessonType": "Lesson type",
+      "teacherActivity": "Teacher activity",
+      "studentActivity": "Student activity",
+      "homework": "Homework",
+      "adaptations": "Adaptations",
+      "gifted": "Gifted students",
+      "support": "Students needing support",
+      "teacherNotes": "Teacher notes",
+      "curriculumSources": "Sources and curriculum alignment",
+      "curriculumLinked": "Lesson linked to curriculum",
+      "curriculumNotLinked": "General lesson — not linked to curriculum",
+      "sourceLink": "Open document",
+      "blocks": "Lesson flow",
+      "resources": "Suggested resource types",
+      "save": "Save lesson",
+      "saved": "Lesson saved",
+      "exportDocx": "Export DOCX",
+      "exportPdf": "Export PDF",
+      "present": "Presentation mode",
+      "minutes": "min"
+    },
+    "blockType": {
+      "intro": "Introduction",
+      "main": "Main part",
+      "summary": "Summary",
+      "exercise": "Exercise"
+    },
+    "history": {
+      "title": "Lesson history",
+      "empty": "No generated lessons yet.",
+      "open": "Open",
+      "created": "Created"
+    },
+    "errors": {
+      "topicRequired": "Enter a lesson topic (min. 3 characters).",
+      "subjectRequired": "Enter a subject.",
+      "levelRequired": "Enter a level or target group.",
+      "durationInvalid": "Lesson duration must be between 5 and 480 minutes.",
+      "invalidAiResponse": "The AI model returned an invalid response. Please try again.",
+      "noProvider": "Configure an AI key in Settings first."
+    }
+  },
+  "syllabusgen": {
+    "title": "Syllabus generator",
+    "subtitle": "Create Format A syllabi (sections I–XII) compliant with PKA",
+    "form": {
+      "subjectName": "Subject name",
+      "subjectCode": "Subject code",
+      "ects": "ECTS credits",
+      "semester": "Semester",
+      "fieldOfStudy": "Field of study",
+      "level": "Study level",
+      "template": "Template / layout",
+      "templateNone": "Default Format A",
+      "provider": "AI model",
+      "generate": "Generate syllabus"
+    },
+    "reference": {
+      "title": "Reference data",
+      "subtitle": "Manage the learning outcomes catalog (KEU) and the study program grid",
+      "missing": "This workspace has no learning outcomes catalog (KEU) or study program yet.",
+      "import": "Import ATINS data (KEU + program)",
+      "imported": "Imported: {{keu}} KEU outcomes, {{program}} subjects.",
+      "backToGen": "Syllabus generator",
+      "manageBtn": "Reference data"
+    },
+    "keu": {
+      "tabTitle": "Learning outcomes (KEU)",
+      "addTitle": "Add learning outcome",
+      "editTitle": "Edit learning outcome",
+      "code": "KEU code",
+      "category": "Category",
+      "catW": "W — Knowledge",
+      "catU": "U — Skills",
+      "catK": "K — Competences",
+      "description": "Outcome description",
+      "descriptionPlaceholder": "Learning outcome text…",
+      "add": "Add KEU",
+      "saved": "Outcome saved.",
+      "deleted": "Outcome deleted.",
+      "confirmDelete": "Delete this learning outcome?",
+      "empty": "No learning outcomes. Add one or import ATINS data.",
+      "actions": "Actions"
+    },
+    "program": {
+      "tabTitle": "Study program grid",
+      "addTitle": "Add subject to grid",
+      "editTitle": "Edit subject",
+      "code": "Code",
+      "namePl": "Name (PL)",
+      "nameEn": "Name (EN)",
+      "ects": "ECTS",
+      "semester": "Semester",
+      "hoursLecture": "Lecture hours",
+      "hoursExercise": "Exercise hours",
+      "hoursWorkshop": "Lab hours",
+      "hours": "Hours",
+      "add": "Add subject",
+      "saved": "Subject saved.",
+      "deleted": "Subject deleted.",
+      "confirmDelete": "Remove this subject from the grid?",
+      "empty": "No subjects in the grid. Add one or import ATINS data.",
+      "actions": "Actions"
+    },
+    "batch": {
+      "title": "Generate entire program",
+      "subtitle": "Select subjects from the grid and generate syllabi for all at once",
+      "configTitle": "Generation configuration",
+      "generate": "Generate syllabi ({{count}})",
+      "queued": "Created {{count}} generation jobs.",
+      "queueHint": "Syllabi are generated in the background — track progress in syllabus history.",
+      "empty": "No subjects in the study program grid.",
+      "goToReference": "Go to reference data to add subjects",
+      "selectAll": "Select all",
+      "selectionCount": "{{selected}} of {{total}} subjects selected",
+      "generateBtn": "Generate program"
+    },
+    "templates": {
+      "title": "Syllabus templates",
+      "name": "Template name",
+      "file": "Template file (DOCX/MD/TXT)",
+      "upload": "Upload template",
+      "uploaded": "Template uploaded.",
+      "empty": "No templates uploaded — default Format A is used.",
+      "hint": "Upload your own syllabus layout. The system generates content in its structure."
+    },
+    "validation": {
+      "title": "Validation (section XII)",
+      "passed": "Syllabus passed validation.",
+      "failed": "Syllabus needs corrections:",
+      "rule": "Rule",
+      "status": "Status"
+    },
+    "result": {
+      "save": "Save syllabus",
+      "saved": "Syllabus saved.",
+      "exportDocx": "Export DOCX"
+    },
+    "history": {
+      "title": "Syllabus history",
+      "empty": "No generated syllabi.",
+      "open": "Open"
+    },
+    "errors": {
+      "subjectRequired": "Enter a subject name.",
+      "invalidAiResponse": "The AI model returned an invalid response. Please try again.",
+      "noProvider": "Configure an AI key in Settings first."
+    }
+  },
+  "pdfintake": {
+    "title": "PDF work intake",
+    "subtitle": "Upload a work in PDF — the system extracts text ready for assessment",
+    "upload": {
+      "studentName": "Student name (optional)",
+      "file": "PDF file",
+      "submit": "Upload work",
+      "processing": "Processing…",
+      "done": "Work uploaded. Detected type: {{type}}.",
+      "toEval": "Send to assessment"
+    },
+    "type": {
+      "text": "text",
+      "scanned": "scan"
+    },
+    "warnings": {
+      "likelyScanned": "The work looks like a scan — no text layer. Full OCR available in the extended version.",
+      "storageUnavailable": "The file was not stored (storage unavailable), but the work text was extracted."
+    },
+    "list": {
+      "title": "Uploaded works",
+      "empty": "No uploaded works.",
+      "pages": "pages",
+      "open": "Preview",
+      "quality": "Quality"
+    },
+    "errors": {
+      "noFile": "Select a PDF file.",
+      "parseFailed": "Failed to read the PDF file."
+    },
+    "ocr": {
+      "button": "Recognise text (OCR)",
+      "processing": "Recognising…",
+      "done": "Recognised {{pages}} pages",
+      "error": "OCR error",
+      "errorNoFile": "No file for OCR — please re-upload the work"
+    }
+  },
+  "edueval": {
+    "title": "Work assessment",
+    "subtitle": "Assess works with AI — the final grade is approved by a human",
+    "form": {
+      "workText": "Work text",
+      "criteria": "Assessment criteria",
+      "criterionName": "Criterion name",
+      "maxPoints": "Max points",
+      "addCriterion": "Add criterion",
+      "gradeScale": "Grade scale (optional)",
+      "provider": "AI model",
+      "evaluate": "Assess work"
+    },
+    "result": {
+      "summary": "Summary",
+      "rubric": "Assessment rubric",
+      "criterion": "Criterion",
+      "points": "Points",
+      "justification": "Justification",
+      "total": "Total points",
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses",
+      "recommendations": "Recommendations",
+      "aiInvolvement": "Likely AI involvement",
+      "proposedGrade": "Proposed grade (pending approval)",
+      "exportDocx": "Export DOCX",
+      "exportHtml": "Export HTML"
+    },
+    "likelihood": {
+      "low": "low",
+      "medium": "medium",
+      "high": "high"
+    },
+    "approval": {
+      "title": "Grade approval",
+      "notice": "The AI grade is a proposal. To approve it, enter the final grade and confirm.",
+      "finalGrade": "Final grade",
+      "approve": "Approve grade",
+      "approved": "Grade approved by: {{by}} — final grade: {{grade}}",
+      "pending": "Awaiting human approval"
+    },
+    "history": {
+      "title": "Assessment history",
+      "empty": "No assessed works.",
+      "open": "Open"
+    },
+    "errors": {
+      "workTooShort": "The work text is too short (min. 20 characters).",
+      "criteriaRequired": "Add at least one criterion.",
+      "criterionName": "Enter a criterion name.",
+      "criterionPoints": "Enter maximum points.",
+      "invalidAiResponse": "The AI model returned an invalid response. Please try again.",
+      "noProvider": "Configure an AI key in Settings first."
+    },
+    "level": {
+      "label": "Select education level"
+    },
+    "levels": {
+      "sp": "Primary school",
+      "lo": "Secondary school",
+      "uczelnia": "University"
+    },
+    "curriculum": {
+      "subjectLabel": "Subject (curriculum)",
+      "selectSubject": "Select subject...",
+      "loadRequirements": "Load curriculum requirements",
+      "requirementsPreview": "Curriculum requirements",
+      "willBeUsed": "Curriculum requirements will be passed to AI as reference.",
+      "noRequirements": "No curriculum requirements found for the selected subject.",
+      "optionalCriteria": "Optional custom criteria (supplement to curriculum)"
+    },
+    "syllabus": {
+      "useQuestion": "Assess according to course syllabi?",
+      "yes": "Yes",
+      "no": "No",
+      "selectLabel": "Select syllabi (multiple allowed)",
+      "noSyllabi": "No syllabi saved in this workspace.",
+      "selected": "{{count}} syllabus/syllabi selected — learning outcomes will be passed to AI.",
+      "extraMaterials": "Additional materials and custom criteria (optional)",
+      "extraMaterialsPlaceholder": "Enter custom criteria, evaluation guidelines or additional materials..."
+    }
+  },
+  "batch": {
+    "title": "Batch work processing",
+    "subtitle": "Upload multiple PDF works to a batch — AI evaluates them in the background, you approve grades",
+    "newBatch": "New batch",
+    "batchName": "Batch name",
+    "batchNamePlaceholder": "e.g. June 2026 exams",
+    "create": "Create",
+    "createFirst": "Create your first batch",
+    "empty": "No batches yet. Create your first to get started.",
+    "open": "Open",
+    "progress": "{{done}} / {{total}} works ({{pct}}%)",
+    "noWorks": "No works in this batch. Upload PDF files.",
+    "workProgressLabel": "Work analysis and grading progress",
+    "viewReport": "Summary report",
+    "status": {
+      "draft": "Draft",
+      "processing": "Processing",
+      "partial": "Partial",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "workStatus": {
+      "uploaded": "Uploaded",
+      "processing": "Processing",
+      "processed": "Parsed",
+      "evaluated": "Evaluated",
+      "error": "Error"
+    },
+    "upload": {
+      "hint": "Drag & drop PDF files or click to select",
+      "format": "Accepted: PDF · multiple files at once",
+      "progress": "Processing {{done}} / {{total}} files…",
+      "allFailed": "Could not add any file. Details below.",
+      "failedTitle": "Could not add {{count}} files:"
+    },
+    "table": {
+      "status": "Status",
+      "file": "File",
+      "student": "Student",
+      "stage": "Stage",
+      "proposedGrade": "Proposed grade",
+      "approved": "Approved"
+    },
+    "detail": {
+      "thesis": "Thesis",
+      "summary": "Summary",
+      "strengths": "Strengths",
+      "weaknesses": "Weaknesses",
+      "recommendations": "Recommendations",
+      "aiInvolvement": "AI involvement",
+      "proposedGrade": "Proposed grade",
+      "approveTitle": "Grade approval (required)",
+      "approveNotice": "The AI grade is a proposal. Enter the final grade and click Approve.",
+      "finalGradePlaceholder": "e.g. A or 4.0",
+      "approve": "Approve grade",
+      "approvedGrade": "Grade approved — final grade: {{grade}}",
+      "pages": "Pages: {{count}}",
+      "pdfType": "PDF type: {{type}}"
+    },
+    "aiInvolvement": {
+      "low": "Low AI involvement",
+      "medium": "Medium AI involvement",
+      "high": "High AI involvement"
+    },
+    "noSummaryYet": "This work has not been evaluated by AI yet. Refresh in a moment.",
+    "report": {
+      "title": "Summary report",
+      "subtitle": "Batch results overview",
+      "total": "Total works",
+      "processed": "Parsed",
+      "evaluated": "Evaluated",
+      "approved": "Approved",
+      "averageGrade": "Average grade (approved)",
+      "gradeDistribution": "Grade distribution",
+      "noReport": "The report is not ready yet.",
+      "noReportHint": "The worker will generate the report after all works in the batch are evaluated."
+    },
+    "errors": {
+      "nameRequired": "Enter a batch name.",
+      "noPdf": "Select at least one PDF file.",
+      "gradeRequired": "Enter the final grade.",
+      "notFound": "Batch not found."
+    },
+    "noKey": {
+      "title": "No AI key — works will not be assessed",
+      "desc": "To let the system read and assess uploaded PDF works, configure an AI key in Settings. Without a key, works stay queued without processing.",
+      "cta": "Go to Settings"
+    },
+    "stop": "Stop processing",
+    "stopped": "Processing stopped",
+    "confirmStop": "Stop processing this batch? Unfinished works will be marked as stopped."
+  },
+  "aiKeys": {
+    "title": "AI keys",
+    "description": "Keys are encrypted and never leave the server. AI calls go exclusively through a secure proxy.",
+    "provider": "Provider",
+    "label": "Label",
+    "apiKey": "API key",
+    "add": "Add key",
+    "test": "Test",
+    "active": "Active",
+    "lastUsed": "Last used",
+    "never": "never",
+    "noKeys": "No AI keys configured.",
+    "testOk": "Key works correctly.",
+    "testFail": "Key failed the test.",
+    "saved": "Key saved.",
+    "onlyAdmin": "Only a workspace administrator can manage AI keys."
+  },
+  "aiStatus": {
+    "checking": "Checking AI…",
+    "ok": "AI ready ({{count}})",
+    "noKeys": "No AI keys",
+    "error": "AI error"
+  },
+  "integrations": {
+    "title": "Integration Hub",
+    "subtitle": "Import works and export data to external systems",
+    "available": "Available integrations",
+    "noConnectors": "No connectors available.",
+    "configure": "Configure",
+    "comingSoon": "Coming soon",
+    "configureTitle": "Configure integration",
+    "integrationName": "Integration name",
+    "integrationNamePlaceholder": "e.g. ZIP import — spring semester",
+    "save": "Save integration",
+    "myIntegrations": "My integrations",
+    "noIntegrations": "No integrations configured. Click Configure above.",
+    "lastSync": "Last sync",
+    "testConnection": "Test connection",
+    "confirmDelete": "Delete this integration?",
+    "importFile": "Import file",
+    "importPanel": "Import works from CSV / ZIP",
+    "dropFile": "Click or drag a CSV / ZIP file",
+    "acceptedFormats": "Accepted: .csv, .zip",
+    "importing": "Importing…",
+    "startImport": "Start import",
+    "importDone": "Imported {{imported}} works (errors: {{failed}})",
+    "outbox": "Outbox — pending exports",
+    "outboxEmpty": "No pending exports.",
+    "outboxNotice": "Exporting data to an external system requires manual approval by an authorized user.",
+    "requiresApproval": "Requires approval",
+    "approve": "Approve",
+    "syncHistory": "Sync history",
+    "noSyncRuns": "No sync history yet.",
+    "runStatus": "Status",
+    "runDirection": "Direction",
+    "runTotal": "Total",
+    "runOk": "OK",
+    "runFailed": "Errors",
+    "runStarted": "Started",
+    "dashboard": {
+      "title": "Integrations",
+      "desc": "Import student works and export grades to external systems."
+    }
+  },
+  "platform": {
+    "nav": "Platform panel",
+    "title": "Platform panel",
+    "accessDenied": "Access denied — superadmin privileges required.",
+    "stats": {
+      "title": "Platform statistics",
+      "workspaces": "Workspaces",
+      "users": "Users",
+      "activeLicenses": "Active licenses",
+      "lessons": "Lessons",
+      "syllabi": "Syllabi",
+      "evaluations": "Evaluations",
+      "studentWorks": "Student works",
+      "aiTokens": "AI tokens (total)"
+    },
+    "workspaces": {
+      "title": "Workspaces",
+      "newBtn": "New workspace",
+      "createTitle": "Create workspace for client",
+      "nameLabel": "Workspace name",
+      "namePlaceholder": "e.g. Example Academy",
+      "ownerEmailLabel": "Owner e-mail (optional)",
+      "ownerEmailPlaceholder": "owner@university.edu",
+      "createBtn": "Create",
+      "empty": "No workspaces found.",
+      "inactive": "inactive",
+      "colName": "Name",
+      "colPlan": "Plan",
+      "colMembers": "Members",
+      "colLicense": "License",
+      "colCreated": "Created",
+      "colActions": "Actions",
+      "manageBtn": "Manage"
+    },
+    "users": {
+      "title": "Users",
+      "empty": "No users found.",
+      "roleUser": "User",
+      "colEmail": "E-mail",
+      "colName": "Full name",
+      "colRole": "Role",
+      "colWorkspaces": "Workspaces",
+      "colCreated": "Created"
+    }
+  },
+  "workspaceManage": {
+    "title": "Manage school",
+    "subtitle": "Modules, features and user accounts",
+    "backToList": "Back to list",
+    "features": {
+      "title": "Modules & features",
+      "empty": "No modules configured for this school."
+    },
+    "createUser": {
+      "title": "Create user account",
+      "emailLabel": "E-mail address",
+      "fullNameLabel": "Full name",
+      "fullNamePlaceholder": "John Smith",
+      "roleLabel": "Role",
+      "roleTeacher": "Teacher / lecturer",
+      "roleAdmin": "Administrator",
+      "roleMember": "Member",
+      "modeLabel": "Activation method",
+      "modeInvite": "Activation link (e-mail)",
+      "modeTempPassword": "Temporary password",
+      "tempPasswordLabel": "Temporary password",
+      "tempPasswordPlaceholder": "Temporary password for the user",
+      "submitBtn": "Create account",
+      "successInvite": "Invitation sent to the provided e-mail address.",
+      "successTempPassword": "Account created with a temporary password."
+    }
+  },
+  "curriculumAdmin": {
+    "title": "Curriculum",
+    "stats": {
+      "title": "Statistics",
+      "documents": "Documents",
+      "requirements": "Requirements",
+      "subjects": "Subjects",
+      "educationLevels": "Education levels",
+      "grades": "Grades",
+      "importLogs": "Import logs"
+    },
+    "documents": {
+      "title": "Source documents",
+      "empty": "No documents found.",
+      "colTitle": "Title",
+      "colSource": "Source",
+      "colLegalBasis": "Legal basis (Dz.U.)",
+      "colYear": "School year",
+      "colStatus": "Status",
+      "colRequirements": "Requirements",
+      "colActions": "Actions",
+      "activate": "Activate",
+      "archive": "Archive"
+    },
+    "import": {
+      "title": "Import data",
+      "hint": "Imported requirements are stored as candidates (active=false) — they require review before activation.",
+      "suggestedUrls": "Ready-to-use ZPE URLs:",
+      "urlLabel": "Source URL",
+      "nameLabel": "Source name (optional)",
+      "namePlaceholder": "e.g. ZPE Primary school 2024",
+      "runBtn": "Run import",
+      "successTitle": "Import completed",
+      "documents": "Documents",
+      "requirements": "Requirements",
+      "warnings": "Warnings",
+      "errors": "Errors",
+      "candidateNote": "Imported requirements are marked as candidates (active=false) — review them before activation."
+    },
+    "requirements": {
+      "title": "Requirements by subject",
+      "selectSubject": "Select subject",
+      "selectSubjectPlaceholder": "select subject",
+      "empty": "No requirements found for the selected subject.",
+      "colSection": "Section",
+      "colType": "Type",
+      "colText": "Requirement text",
+      "colGrade": "Grade",
+      "colLegalBasis": "Legal basis",
+      "colActive": "Active",
+      "yes": "Yes",
+      "candidate": "Candidate"
+    },
+    "logs": {
+      "title": "Import logs",
+      "empty": "No logs found.",
+      "colSource": "Source",
+      "colDocuments": "Documents",
+      "colRequirements": "Requirements",
+      "colStatus": "Status",
+      "colDate": "Date"
+    }
+  },
+  "orgsheet": {
+    "title": "Organization sheet",
+    "subtitle": "Plan the school's hourly budget — classes, staff, assignments and FTEs",
+    "newSheet": "New sheet",
+    "noSheets": "No organization sheets. Create the first one.",
+    "open": "Open",
+    "col": {
+      "name": "Sheet name",
+      "schoolType": "School type",
+      "year": "School year",
+      "status": "Status",
+      "createdAt": "Created"
+    },
+    "status": {
+      "draft": "Draft",
+      "finalized": "Finalized",
+      "exported": "Exported"
+    },
+    "schoolType": {
+      "sp-4-8": "Primary school (grades 4–8)",
+      "lo": "General secondary school",
+      "technikum": "Technical secondary school"
+    },
+    "section": {
+      "units": "Classes",
+      "teachers": "Teachers",
+      "compute": "Calculate & assign (AI)",
+      "result": "Sheet result"
+    },
+    "unit": {
+      "add": "Add class",
+      "edit": "Edit class",
+      "gradeLevel": "Grade",
+      "letter": "Letter",
+      "studentsCount": "Number of students",
+      "studentsWithOrzeczenie": "Students with SEN",
+      "splitByGender": "Split by gender (PE)"
+    },
+    "teacher": {
+      "add": "Add teacher",
+      "edit": "Edit teacher",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "awans": "Career stage",
+      "qualifications": "Qualifications (subjects, comma-separated)",
+      "position": "Position",
+      "pensum": "Teaching load (h/week)",
+      "etatMax": "Max FTE"
+    },
+    "result": {
+      "indicators": "Sheet indicators",
+      "loads": "Teacher workloads",
+      "assignments": "Hour assignments",
+      "gaps": "Staffing gaps",
+      "validation": "Validation",
+      "exportPdf": "Export PDF",
+      "ok": "Sheet is valid — no critical errors."
+    },
+    "compute": {
+      "description": "The RPN calculator computes hours deterministically · AI selects the optimal teacher assignment",
+      "run": "Calculate & assign",
+      "running": "Calculating…",
+      "noUnits": "Add at least one class before calculating."
+    },
+    "import": {
+      "button": "Import from file (XLS/CSV)",
+      "title": "Import units and teachers",
+      "hint": "Upload an XLSX/XLS/CSV file. The system auto-detects columns (PL/EN).",
+      "columnsTitle": "Recognized columns",
+      "columnsUnits": "Units: class/grade, letter, students, profile, SEN/orzeczenia",
+      "columnsTeachers": "Teachers: first name, last name, promotion grade, qualifications, position, pensum, FTE",
+      "namedSheets": "You can use two named sheets: 'Oddziały' and 'Nauczyciele'.",
+      "detected": "Detected: {{units}} units, {{teachers}} teachers",
+      "detectedNone": "No data recognized in the file.",
+      "warnings": "Parsing warnings",
+      "addToSheet": "Add to sheet",
+      "adding": "Adding…",
+      "addedSuccess": "Data added to the sheet.",
+      "errorParse": "Failed to parse the file.",
+      "errorAdd": "Failed to add data.",
+      "selectFile": "Select file",
+      "cancel": "Cancel"
+    },
+    "exportJson": {
+      "button": "Export to JSON"
+    }
+  },
+  "aiIntegrations": {
+    "title": "AI Integrations",
+    "subtitle": "Configure API keys for the AI providers used by the platform.",
+    "pageHint": "API keys are encrypted and stored exclusively on the server — they never reach the browser. Each save automatically tests the connection with the provider.",
+    "vendorsSection": "AI Providers",
+    "n8nSection": "n8n Automations",
+    "n8nDesc": "Webhook to trigger n8n automations from AI School. Used to integrate with external workflows.",
+    "webhookUrl": "Webhook URL",
+    "webhookToken": "Authorization token (optional)",
+    "webhookTokenHint": "Token is encrypted and stored securely.",
+    "saveAndTest": "Save and test",
+    "retestConnection": "Retest connection",
+    "remove": "Remove",
+    "configure": "Configure",
+    "update": "Update key",
+    "apiKey": "API Key",
+    "apiKeyMask": "Saved key: ",
+    "label": "Label (optional)",
+    "model": "Default model",
+    "keyHint": "Active key: ",
+    "statusConfigured": "Configured",
+    "statusTestOk": "Test OK",
+    "statusError": "Connection error",
+    "statusNotConfigured": "Not configured",
+    "testOk": "Connection established successfully",
+    "testOkModel": "Connection OK, active model: ",
+    "testFail": "Connection error with provider",
+    "saving": "Saving…",
+    "testing": "Testing connection…",
+    "docsLink": "Documentation",
+    "keyFormat": "Key format",
+    "keyFormatError": "Invalid key format. Check the prefix and length.",
+    "keyRequired": "API key is required.",
+    "urlRequired": "Webhook URL is required.",
+    "removed": "Key removed.",
+    "saved": "Key saved.",
+    "n8nSaved": "n8n configuration saved.",
+    "n8nTestOk": "Webhook responded successfully.",
+    "n8nTestFail": "Webhook did not respond — check the URL and availability of the n8n server.",
+    "onlyAdmin": "Only workspace administrators can manage AI integrations.",
+    "confirmRemove": "Are you sure you want to remove the key for this provider? AI modules will stop working until a new key is configured.",
+    "loading": "Loading providers…",
+    "noVendors": "No AI providers available.",
+    "loadError": "Error loading data. Try refreshing the page.",
+    "networkError": "Network error — check your connection.",
+    "engineSection": "AI engines per feature",
+    "engineSectionHint": "Choose the AI provider and model for each platform feature. You can use different providers for different tasks.",
+    "engineVendorLabel": "Provider",
+    "engineModelLabel": "Model",
+    "engineSaved": "Saved",
+    "engineNoKeys": "Add an API key above first",
+    "engineModules": {
+      "lessongen": "Lesson generator",
+      "syllabusgen": "Syllabus generator",
+      "edueval": "Work evaluation",
+      "org_sheet": "Organisational sheet",
+      "ocr": "OCR"
+    },
+    "authMethodLabel": "How do you want to authenticate?",
+    "authMethodApiKey": "API Key",
+    "authMethodGoogleOAuth": "Sign in with Google",
+    "oauthComingSoonTitle": "Google Sign-In — coming soon",
+    "oauthComingSoonDesc": "OAuth sign-in via browser requires Google Cloud OAuth configuration (client_id). Gemini API supports keys from Google AI Studio — this option is prepared, but the full OAuth flow will be implemented in a future release. For now, please use an API key.",
+    "switchToApiKey": "Use API Key",
+    "loadingModels": "Loading models…",
+    "recommendedFor": "Recommended for this function",
+    "recommendedActive": "Recommended",
+    "setRecommended": "Use recommended",
+    "engineModuleDesc": {
+      "lessongen": "Powerful model for complex lesson scenarios.",
+      "syllabusgen": "Strongest model for PKA compliance.",
+      "edueval": "Balanced model for grading student work.",
+      "org_sheet": "Standard model for organizational sheets.",
+      "ocr": "Vision-capable model for text recognition."
+    }
+  },
+  "billing": {
+    "nav": "Billing",
+    "title": "Billing",
+    "currentPlanLabel": "Current plan",
+    "currentPlan": "Current plan",
+    "status": "Status",
+    "status_active": "Active",
+    "status_trial": "Trial",
+    "status_expired": "Expired",
+    "status_suspended": "Suspended",
+    "expiresAt": "Valid until",
+    "usageTitle": "Resource usage",
+    "metricMembers": "Members",
+    "metricTokens": "AI tokens (monthly)",
+    "metricOcr": "OCR pages (monthly)",
+    "unitMembers": "users",
+    "unitTokens": "tokens",
+    "unitOcr": "pages",
+    "unlimited": "unlimited",
+    "used": "used",
+    "nearLimitWarning": "You are approaching the limit — contact your administrator.",
+    "plansTitle": "Available plans",
+    "free": "Free",
+    "perMonth": "/ month",
+    "setPlan": "Set this plan",
+    "limitMembers": "Members",
+    "limitTokens": "AI tokens/mo",
+    "limitOcr": "OCR pages/mo",
+    "contactAdminInfo": "Contact the platform administrator to change your plan."
+  },
+  "notion": {
+    "title": "Notion Synchronisation",
+    "subtitle": "Mirror lessons and syllabuses to your Notion database in near real-time.",
+    "rodoBanner": {
+      "title": "GDPR / DPA Warning",
+      "body": "Synchronising student data requires a Data Processing Agreement (DPA) with Notion and a valid legal basis under GDPR. Disabled by default. Consult your Data Protection Officer before enabling."
+    },
+    "configSection": "Connection configuration",
+    "tokenLabel": "Notion integration token",
+    "tokenSaved": "Saved token:",
+    "tokenPlaceholder": "secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "tokenPlaceholderExisting": "Enter a new token to replace the existing one",
+    "tokenLink": "Create a token at notion.so/my-integrations",
+    "showToken": "Show token",
+    "hideToken": "Hide token",
+    "databaseIdLabel": "Database ID",
+    "databaseIdPlaceholder": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "databaseIdHint": "Copy the database ID from the Notion page URL (32 characters after the last slash, before ?v=...).",
+    "enableToggle": "Enable synchronisation",
+    "enableToggleHint": "When disabled, new artefacts are not queued to Notion.",
+    "toggleOn": "Enabled",
+    "toggleOff": "Disabled",
+    "syncOptionsLabel": "Synchronisation scope",
+    "syncArtifacts": "Synchronise artefacts (lessons, syllabuses)",
+    "syncActivity": "Synchronise activity",
+    "syncStudentData": "Synchronise student data (requires DPA!)",
+    "syncStudentDataWarning": "Enabling this option sends student personal data to Notion. A valid DPA is required.",
+    "lastSync": "Last synchronisation",
+    "saveConfig": "Save configuration",
+    "saveSuccess": "Configuration saved successfully.",
+    "queueSection": "Synchronisation queue",
+    "pendingCount": "awaiting approval",
+    "syncNow": "Synchronise now",
+    "queueEmpty": "The queue is empty.",
+    "untitledItem": "(untitled)",
+    "approve": "Approve"
+  }
+}
