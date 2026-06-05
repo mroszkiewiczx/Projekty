@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School_AI_Custom - Platform Edukacyjna AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #1f2937;
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .subtitle {
+            color: #6b7280;
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+        .feature {
+            padding: 20px;
+            background: #f3f4f6;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .feature h3 {
+            color: #1f2937;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        .feature p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .status {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        .status h4 {
+            color: #1e40af;
+            margin-bottom: 8px;
+        }
+        .status ul {
+            list-style: none;
+            color: #1e40af;
+            font-size: 14px;
+        }
+        .status li {
+            margin-bottom: 6px;
+        }
+        .status li:before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        .btn-secondary:hover {
+            background: #f3f4f6;
+        }
+        .lessons {
+            background: #f9fafb;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .lessons h3 {
+            color: #1f2937;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .lesson-list {
+            display: grid;
+            gap: 10px;
+        }
+        .lesson-item {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+            font-size: 14px;
+            color: #374151;
+        }
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        .footer p {
+            margin-bottom: 10px;
+        }
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 20px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎓</div>
+        <h1>School_AI_Custom</h1>
+        <p class="subtitle">Platform edukacyjna zasilana sztuczną inteligencją. Generuj lekcje, zarządzaj materiałami, automatyzuj procesy.</p>
+
+        <div class="status">
+            <h4>✨ Status MVP</h4>
+            <ul>
+                <li>5 przykładowych lekcji gotowych</li>
+                <li>Dashboard z materiałami</li>
+                <li>Biblioteka artefaktów</li>
+                <li>PDF export</li>
+                <li>Email notifications</li>
+                <li>n8n automation</li>
+            </ul>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <h3>📚 Dashboard</h3>
+                <p>Przegląd wszystkich materiałów i statystyk w jednym miejscu</p>
+            </div>
+            <div class="feature">
+                <h3>🎯 Generuj Lekcje</h3>
+                <p>Twórz lekcje za pomocą AI w zaledwie kilka sekund</p>
+            </div>
+            <div class="feature">
+                <h3>📖 Biblioteka</h3>
+                <p>Zorganizowane artefakty: lekcje, sylabusy, quizy</p>
+            </div>
+            <div class="feature">
+                <h3>⚙️ Automatyzacja</h3>
+                <p>Integracja z n8n do automatyzacji workflow'ów</p>
+            </div>
+        </div>
+
+        <div class="lessons">
+            <h3>📝 5 Przykładowych Lekcji</h3>
+            <div class="lesson-list">
+                <div class="lesson-item">
+                    <strong>Photosynthesis: Converting Light to Energy</strong> <span class="badge">Biology</span>
+                </div>
+                <div class="lesson-item">
+                    <strong>Fractions and Decimals: Mastering Numbers</strong> <span class="badge">Mathematics</span>
+                </div>
+                <div class="lesson-item">
+                    <strong>World War II: Causes and Consequences</strong> <span class="badge">History</span>
+                </div>
+                <div class="lesson-item">
+                    <strong>Shakespeare's Hamlet: Tragedy and Madness</strong> <span class="badge">Literature</span>
+                </div>
+                <div class="lesson-item">
+                    <strong>Climate Change: Science and Solutions</strong> <span class="badge">Environmental Science</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="window.location.href='https://school-bloq310ve-mateuszs-projects-dba647d2.vercel.app'">
+                🚀 Otwórz Aplikację
+            </button>
+            <button class="btn btn-secondary" onclick="window.location.href='https://github.com/mroszkiewiczx/Projekty'">
+                💻 GitHub Repo
+            </button>
+        </div>
+
+        <div class="footer">
+            <p><strong>Technologia:</strong> React 18 • TypeScript • Supabase • Vercel • n8n</p>
+            <p>🔒 Bezpieczna platforma edukacyjna z zaawansowaną automatyzacją</p>
+        </div>
+    </div>
+</body>
+</html>
