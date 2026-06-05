@@ -1,0 +1,129 @@
+{
+  "name": "Export Lesson to Notion",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "export-notion",
+        "authenticateWith": "bearerAuth",
+        "allowedMethods": ["POST"],
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "nodeEndpoint": "webhook-trigger",
+        "method": "POST"
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "database",
+        "operation": "create",
+        "databaseId": "={{ $secrets.NOTION_DATABASE_ID }}",
+        "title": "={{ $json.lesson.title }}",
+        "properties": {
+          "Subject": "={{ $json.lesson.subject }}",
+          "Duration": "={{ $json.lesson.duration_minutes }} minutes",
+          "TargetGroup": "={{ $json.lesson.target_group }}",
+          "AIModel": "={{ $json.lesson.ai_model }}",
+          "ExportedAt": "={{ $json.ai_school_source.exported_at }}",
+          "SourceLink": "={{ $json.ai_school_source.lesson_link }}"
+        }
+      },
+      "id": "notion-create",
+      "name": "Create Notion Page",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [500, 150]
+    },
+    {
+      "parameters": {
+        "resource": "page",
+        "operation": "getDatabase",
+        "databaseId": "={{ $secrets.NOTION_DATABASE_ID }}"
+      },
+      "id": "notion-get-page",
+      "name": "Get Page Details",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2,
+      "position": [650, 150]
+    },
+    {
+      "parameters": {
+        "expression": "{\n  \"execution_id\": \"{{ $execution.id }}\",\n  \"notion_page_id\": \"{{ $json.id }}\",\n  \"notion_url\": \"https://notion.so/{{ $json.id.replace(/-/g, '') }}\",\n  \"status\": \"exported\"\n}"
+      },
+      "id": "response-data",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [700, 300]
+    }
+  ],
+  "connections": {
+    "webhook-trigger": {
+      "main": [
+        [
+          {
+            "node": "notion-create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "notion-create": {
+      "main": [
+        [
+          {
+            "node": "notion-get-page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "notion-get-page": {
+      "main": [
+        [
+          {
+            "node": "response-data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "response-data": {
+      "main": [
+        [
+          {
+            "node": "webhook-response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "b1c5f7a9",
+  "meta": {
+    "templateId": "ai-school-export-notion"
+  },
+  "pinData": {},
+  "variables": {}
+}

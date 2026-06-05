@@ -1,0 +1,138 @@
+{
+  "name": "Export Lesson to Airtable",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "export-airtable",
+        "authenticateWith": "bearerAuth",
+        "allowedMethods": ["POST"],
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "nodeEndpoint": "webhook-trigger",
+        "method": "POST"
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [800, 300]
+    },
+    {
+      "parameters": {
+        "authentication": "airtableApi",
+        "baseId": "={{ $secrets.AIRTABLE_BASE_ID }}",
+        "resource": "record",
+        "operation": "create",
+        "tableId": "={{ $secrets.AIRTABLE_TABLE_ID }}",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldName": "Title",
+              "fieldValue": "={{ $json.lesson.title }}"
+            },
+            {
+              "fieldName": "Subject",
+              "fieldValue": "={{ $json.lesson.subject }}"
+            },
+            {
+              "fieldName": "Duration",
+              "fieldValue": "={{ $json.lesson.duration_minutes }}"
+            },
+            {
+              "fieldName": "TargetGroup",
+              "fieldValue": "={{ $json.lesson.target_group }}"
+            },
+            {
+              "fieldName": "AIModel",
+              "fieldValue": "={{ $json.lesson.ai_model }}"
+            },
+            {
+              "fieldName": "TokensUsed",
+              "fieldValue": "={{ $json.lesson.tokens_used }}"
+            },
+            {
+              "fieldName": "ExportedAt",
+              "fieldValue": "={{ $json.ai_school_source.exported_at }}"
+            },
+            {
+              "fieldName": "SourceLink",
+              "fieldValue": "={{ $json.ai_school_source.lesson_link }}"
+            },
+            {
+              "fieldName": "Objectives",
+              "fieldValue": "={{ $json.lesson.objectives }}"
+            }
+          ]
+        }
+      },
+      "id": "airtable-create",
+      "name": "Create Airtable Record",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2,
+      "position": [500, 150]
+    },
+    {
+      "parameters": {
+        "expression": "{\n  \"execution_id\": \"{{ $execution.id }}\",\n  \"airtable_record_id\": \"{{ $json.id }}\",\n  \"status\": \"exported\"\n}"
+      },
+      "id": "response-data",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [700, 300]
+    }
+  ],
+  "connections": {
+    "webhook-trigger": {
+      "main": [
+        [
+          {
+            "node": "airtable-create",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "airtable-create": {
+      "main": [
+        [
+          {
+            "node": "response-data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "response-data": {
+      "main": [
+        [
+          {
+            "node": "webhook-response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "a2d6e8b1",
+  "meta": {
+    "templateId": "ai-school-export-airtable"
+  },
+  "pinData": {},
+  "variables": {}
+}
