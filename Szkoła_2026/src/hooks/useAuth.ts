@@ -1,11 +1,11 @@
 import { useContext } from 'react'
 import { AuthContext, type AuthContextValue } from '@/contexts/AuthContext'
 import { authService } from '@/services/authService'
-import type { SchoolSignupFormData, JoinTeacherFormData } from '@/types/auth'
+import type { SchoolSignupFormData, JoinTeacherFormData, AuthResponse } from '@/types/auth'
 
 export type UseAuthReturn = AuthContextValue & {
-  signupSchool: (data: SchoolSignupFormData) => Promise<void>
-  joinAsTeacher: (data: JoinTeacherFormData) => Promise<void>
+  signupSchool: (data: SchoolSignupFormData) => Promise<AuthResponse>
+  joinAsTeacher: (data: JoinTeacherFormData) => Promise<AuthResponse>
   getCurrentSession: () => Promise<any>
 }
 
