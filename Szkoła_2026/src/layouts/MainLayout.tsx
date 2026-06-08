@@ -94,6 +94,7 @@ export function MainLayout({ children }: MainLayoutProps) {
   const navItems: NavItem[] = [
     { label: t('dashboard.title', 'Pulpit'), href: '/dashboard', icon: <IconGrid /> },
     { label: t('lesson.generate', 'Nowa lekcja'), href: '/lesson/generator', icon: <IconPlus /> },
+    { label: 'Generator AI v2', href: '/lesson/generator-v2', icon: <IconPlus /> },
     { label: t('library.title', 'Biblioteka'), href: '/library', icon: <IconLibrary /> },
   ]
 

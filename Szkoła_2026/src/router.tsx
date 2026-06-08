@@ -10,6 +10,12 @@ const JoinTeacherPage = lazy(() => import('@/pages/auth/JoinTeacherPage'))
 // Teacher pages — protected
 const TeacherDashboardPage = lazy(() => import('@/pages/teacher/TeacherDashboardPage'))
 const LessonDetailPage = lazy(() => import('@/pages/teacher/LessonDetailPage'))
+const LessonGeneratorPage = lazy(() => import('@/pages/lesson/LessonGeneratorPage'))
+const LessonGeneratorPageV2 = lazy(() =>
+  import('@/modules/lessongen/pages/LessonGeneratorPageV2').then((m) => ({
+    default: m.LessonGeneratorPageV2,
+  })),
+)
 const LibraryPage = lazy(() => import('@/pages/library/LibraryPage'))
 
 // Admin pages — protected, admin-only
@@ -37,6 +43,9 @@ export default function Router() {
         {/* Protected teacher routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<TeacherDashboardPage />} />
+          <Route path="/lesson/new" element={<LessonGeneratorPage />} />
+          <Route path="/lesson/generator" element={<LessonGeneratorPage />} />
+          <Route path="/lesson/generator-v2" element={<LessonGeneratorPageV2 />} />
           <Route path="/lesson/:id" element={<LessonDetailPage />} />
           <Route path="/library" element={<LibraryPage />} />
         </Route>
