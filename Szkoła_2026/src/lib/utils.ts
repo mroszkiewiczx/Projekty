@@ -67,12 +67,12 @@ export function isValidEmail(email: string): boolean {
 
 /** Walidacja hasła (min 8 znaków) */
 export function isValidPassword(password: string): boolean {
-  return password && password.length >= 8;
+  return Boolean(password && password.length >= 8);
 }
 
 /** Walidacja nazwy szkoły (min 3 znaki) */
 export function isValidSchoolName(name: string): boolean {
-  return name && name.length >= 3;
+  return Boolean(name && name.length >= 3);
 }
 
 /** Sprawdź czy role jest admin */

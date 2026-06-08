@@ -1,6 +1,3 @@
-import { jsPDF } from 'jspdf'
-import html2canvas from 'html2canvas'
-
 export interface ExportOptions {
   title: string
   content: string
@@ -10,6 +7,8 @@ export interface ExportOptions {
 
 export const pdfExportService = {
   async exportLessonToPDF(lesson: { title: string; subject: string; content: any; duration_minutes: number }): Promise<Blob> {
+    const { jsPDF } = await import('jspdf')
+
     const pdf = new jsPDF()
     const pageWidth = pdf.internal.pageSize.getWidth()
     const pageHeight = pdf.internal.pageSize.getHeight()

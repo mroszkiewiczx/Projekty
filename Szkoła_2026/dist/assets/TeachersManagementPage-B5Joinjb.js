@@ -1,0 +1,1 @@
+import{j as e}from"./vendor-query-rZlX2w7P.js";import"./vendor-react-CT46qExo.js";function s(){return e.jsxs("div",{className:"p-8",children:[e.jsx("h1",{className:"text-2xl font-bold",children:"Zarządzanie nauczycielami"}),e.jsx("p",{className:"text-gray-500 mt-2",children:"Lista nauczycieli — wkrótce"})]})}export{s as default};

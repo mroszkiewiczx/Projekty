@@ -1,1 +1,0 @@
-import{j as a}from"./index-BxlPsj2q.js";function s(){return a.jsxs("div",{className:"p-8",children:[a.jsx("h1",{className:"text-2xl font-bold",children:"Panel nauczyciela"}),a.jsx("p",{className:"text-gray-500 mt-2",children:"Dashboard — wkrótce"})]})}export{s as default};

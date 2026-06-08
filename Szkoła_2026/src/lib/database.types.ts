@@ -1,7 +1,7 @@
 // ============================================================
 // src/lib/database.types.ts
-// Typy DB dla projektu Szkoła_2026
-// Zastąp wygenerowanymi przez: npx supabase gen types typescript --project-id <ID> > src/lib/database.types.ts
+// Typy DB dla projektu Szkola_2026
+// Zastap wygenerowanymi przez: npx supabase gen types typescript --project-id <ID> > src/lib/database.types.ts
 // ============================================================
 
 export type Json =
@@ -19,7 +19,7 @@ export interface Database {
         Row: {
           id: string;
           name: string;
-          slug: string;
+          slug: string | null;
           plan: 'BASIC' | 'PRO' | 'ENTERPRISE';
           type: string | null;
           owner_id: string | null;
@@ -35,7 +35,7 @@ export interface Database {
         Insert: {
           id?: string;
           name: string;
-          slug?: string;
+          slug?: string | null;
           plan?: 'BASIC' | 'PRO' | 'ENTERPRISE';
           type?: string | null;
           owner_id?: string | null;
@@ -117,7 +117,6 @@ export interface Database {
           invite_code: string | null;
           expires_at: string;
           accepted_at: string | null;
-          users: { name: string } | null;
           created_at: string;
         };
         Insert: {
@@ -131,7 +130,6 @@ export interface Database {
           invite_code?: string | null;
           expires_at: string;
           accepted_at?: string | null;
-          users?: { name: string } | null;
           created_at?: string;
         };
         Update: Partial<Database['public']['Tables']['teacher_invites']['Insert']>;
@@ -201,25 +199,6 @@ export interface Database {
         Update: Partial<Database['public']['Tables']['lessons']['Insert']>;
         Relationships: [];
       };
-      materials_view: {
-        Row: {
-          id: string;
-          workspace_id: string;
-          teacher_id: string | null;
-          type: string;
-          title: string;
-          topic: string;
-          subject: string;
-          grade: number;
-          status: string;
-          quality_score: number | null;
-          created_at: string;
-          updated_at: string;
-        };
-        Insert: never;
-        Update: never;
-        Relationships: [];
-      };
       material_history: {
         Row: {
           id: string;
@@ -272,6 +251,16 @@ export interface Database {
           material_id: string;
           workspace_id: string;
           score: number;
+          overall_score?: number | null;
+          topical_alignment?: number | null;
+          grade_appropriateness?: number | null;
+          lesson_time_realism?: number | null;
+          objectives_quality?: number | null;
+          exercises_quality?: number | null;
+          language_clarity?: number | null;
+          structure_flow?: number | null;
+          engagement_potential?: number | null;
+          feedback?: string | null;
           criteria?: Json;
           reviewed_at?: string;
         };
@@ -349,7 +338,25 @@ export interface Database {
         Relationships: [];
       };
     };
-    Views: Record<string, never>;
+    Views: {
+      materials_view: {
+        Row: {
+          id: string;
+          workspace_id: string;
+          teacher_id: string | null;
+          type: string;
+          title: string;
+          topic: string;
+          subject: string;
+          grade: number;
+          status: string;
+          quality_score: number | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Relationships: [];
+      };
+    };
     Functions: Record<string, never>;
     Enums: Record<string, never>;
     CompositeTypes: Record<string, never>;

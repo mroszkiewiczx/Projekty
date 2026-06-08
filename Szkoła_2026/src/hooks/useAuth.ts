@@ -19,6 +19,7 @@ export function useAuth(): UseAuthReturn {
     user: ctx.user,
     isLoading: ctx.isLoading,
     isAuthenticated: ctx.isAuthenticated,
+    canPerform: ctx.canPerform,
     signOut: ctx.signOut,
     signupSchool: authService.signupSchool.bind(authService),
     joinAsTeacher: authService.joinAsTeacher.bind(authService),

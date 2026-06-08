@@ -45,3 +45,24 @@ export interface CurriculumSubject {
   order_index: number
   created_at: string
 }
+
+export interface CurriculumStandard {
+  id: string
+  subject: string
+  grade: number
+  topic: string
+  objectives: string[]
+  competencies: string[]
+  content: string
+  assessmentMethods: string[]
+  duration: number // minuty
+  resources: string[]
+}
+
+export interface CurriculumImportResult {
+  success: boolean
+  imported: number
+  failed: number
+  standards: CurriculumStandard[]
+  errors: string[]
+}

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect, useCallback, lazy, Suspense } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { MainLayout } from '@/layouts/MainLayout'
 import {
@@ -12,74 +12,133 @@ import {
   Button,
   Loading,
 } from '@/components/ui'
-import { RichTextEditor, LessonActions } from '@/components/lesson'
+import { LessonActions } from '@/components/lesson'
+const RichTextEditor = lazy(() =>
+  import('@/components/lesson/RichTextEditor').then(m => ({ default: m.RichTextEditor }))
+)
 import { SharingModal, CommentsSection } from '@/components/library'
-import type { LessonGeneratorOutput, Activity } from '@/types/lesson'
+import { lessonService } from '@/services/lessonService'
+import { n8nIntegrationService } from '@/services/n8nIntegrationService'
+import { useAuth } from '@/hooks/useAuth'
+import type { LessonGeneratorOutput } from '@/types/lesson'
 
 export default function LessonDetailPage() {
   const { t } = useTranslation()
   const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(true)
   const [isSharingOpen, setIsSharingOpen] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+  const [isSaving, setIsSaving] = useState(false)
   const [lesson, setLesson] = useState<LessonGeneratorOutput | null>(null)
   const [content, setContent] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
-  // Placeholder: w rzeczywistości będzie fetch z serwera
-  const mockLesson: LessonGeneratorOutput = {
-    id: id || '',
-    topic: 'Fotosynteza',
-    title: 'Fotosynteza - Jak rośliny produkują energię',
-    content: '<h2>Wstęp</h2><p>Fotosynteza to proces...</p>',
-    objectives: [
-      'Zrozumieć proces fotosyntezy',
-      'Poznać rolę chlorofilu',
-      'Nauczyć się praktycznych zastosowań',
-    ],
-    activities: [
-      {
-        name: 'Eksperyment z liśćmi',
-        duration: 30,
-        description: 'Obserwacja zmian barwy liści pod wpływem światła',
-        materials: ['liście', 'papier kwasowo-zasadowy'],
-      },
-      {
-        name: 'Dyskusja klasowa',
-        duration: 20,
-        description: 'Omówienie wyników doświadczenia',
-        materials: [],
-      },
-    ],
-    assessment: 'Quiz wielokrotnego wyboru i obserwacja praktycznego eksperymentu',
-    materials: ['prezentacja.pdf', 'instrukcja-eksperymentu.docx'],
-    qualityScore: 8.5,
-    generatedAt: new Date(),
-    status: 'published',
-  }
+  const showToast = useCallback((type: 'success' | 'error', message: string) => {
+    setToast({ type, message })
+    setTimeout(() => setToast(null), 5000)
+  }, [])
 
-  // Simulate loading
-  setTimeout(() => {
-    setLesson(mockLesson)
-    setContent(mockLesson.content)
-    setIsLoading(false)
-  }, 500)
+  useEffect(() => {
+    if (!id) {
+      setError('Brak identyfikatora lekcji')
+      setIsLoading(false)
+      return
+    }
+
+    let cancelled = false
+
+    const load = async () => {
+      try {
+        const data = await lessonService.getLesson(id)
+        if (!cancelled) {
+          if (data) {
+            setLesson(data)
+            setContent(data.content)
+          } else {
+            setError('Nie znaleziono lekcji')
+          }
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError('Nie udało się załadować lekcji')
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    load()
+    return () => { cancelled = true }
+  }, [id])
 
   const handleSaveLesson = async () => {
-    // TODO: Implement save to backend
-    setIsEditing(false)
+    if (!lesson) return
+    setIsSaving(true)
+    try {
+      if (user) {
+        await n8nIntegrationService.onMaterialUpdated(user.workspaceId, {
+          id: lesson.id,
+          title: lesson.title,
+          changes: { content },
+        })
+      }
+      setLesson((prev) => prev ? { ...prev, content } : prev)
+      setIsEditing(false)
+      showToast('success', 'Lekcja została zapisana.')
+    } catch (err) {
+      showToast('error', 'Nie udało się zapisać zmian.')
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handlePublish = async () => {
+    if (!lesson) return
+    setIsSaving(true)
+    try {
+      await lessonService.publishLesson(lesson.id)
+      setLesson((prev) => prev ? { ...prev, status: 'published' as const } : prev)
+      if (user) {
+        await n8nIntegrationService.onLessonCreated(user.workspaceId, lesson)
+      }
+      showToast('success', 'Lekcja została opublikowana!')
+    } catch (err) {
+      showToast('error', 'Nie udało się opublikować lekcji.')
+    } finally {
+      setIsSaving(false)
+    }
+  }
+
+  const handleDelete = async () => {
+    if (!lesson || !window.confirm('Czy na pewno chcesz usunąć tę lekcję?')) return
+    try {
+      await lessonService.deleteLesson(lesson.id)
+      navigate('/dashboard')
+    } catch (err) {
+      showToast('error', 'Nie udało się usunąć lekcji.')
+    }
   }
 
   const handleShareLesson = async (emails: string[]) => {
-    // TODO: Implement share functionality
-    console.log('Sharing with:', emails)
+    if (!lesson || !user) return
+    try {
+      await n8nIntegrationService.onLessonShared(user.workspaceId, lesson, emails)
+      showToast('success', `Lekcja udostępniona dla ${emails.length} osób.`)
+    } catch (err) {
+      showToast('error', 'Nie udało się udostępnić lekcji.')
+    }
   }
 
-  const handleAddComment = async (comment: string) => {
-    // TODO: Implement comment functionality
-    console.log('Adding comment:', comment)
+  const handleAddComment = async (_comment: string) => {
+    // Comments integration reserved for future implementation
   }
 
-  if (isLoading || !lesson) {
+  if (isLoading) {
     return (
       <MainLayout>
         <div className="flex min-h-screen items-center justify-center">
@@ -89,8 +148,34 @@ export default function LessonDetailPage() {
     )
   }
 
+  if (error || !lesson) {
+    return (
+      <MainLayout>
+        <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
+          <p className="text-lg text-gray-700">{error ?? 'Nie znaleziono lekcji.'}</p>
+          <Button variant="outline" onClick={() => navigate('/dashboard')}>
+            Wróć do dashboardu
+          </Button>
+        </div>
+      </MainLayout>
+    )
+  }
+
   return (
     <MainLayout>
+      {toast && (
+        <div className="fixed right-4 top-4 z-50">
+          <div
+            className={`rounded-lg border px-4 py-3 text-sm shadow-lg ${
+              toast.type === 'success'
+                ? 'border-green-200 bg-green-50 text-green-800'
+                : 'border-red-200 bg-red-50 text-red-800'
+            }`}
+          >
+            {toast.message}
+          </div>
+        </div>
+      )}
       <div className="space-y-6">
         {/* Header */}
         <div className="space-y-2">
@@ -100,11 +185,19 @@ export default function LessonDetailPage() {
               <p className="mt-1 text-gray-600">{lesson.topic}</p>
             </div>
             <div className="flex gap-2">
+              {lesson.status !== 'published' && (
+                <Button onClick={handlePublish} disabled={isSaving}>
+                  {isSaving ? 'Zapisywanie...' : 'Opublikuj'}
+                </Button>
+              )}
               <LessonActions
                 onShare={() => setIsSharingOpen(true)}
-                onPublish={handleSaveLesson}
+                onPublish={handlePublish}
                 isPublished={lesson.status === 'published'}
               />
+              <Button variant="outline" onClick={handleDelete} className="text-red-600 hover:bg-red-50">
+                Usuń
+              </Button>
             </div>
           </div>
         </div>
@@ -124,11 +217,13 @@ export default function LessonDetailPage() {
               </CardHeader>
               <CardContent>
                 {isEditing ? (
-                  <RichTextEditor
-                    value={content}
-                    onChange={setContent}
-                    placeholder="Treść lekcji..."
-                  />
+                  <Suspense fallback={<div className="p-4 text-gray-500">Ladowanie edytora...</div>}>
+                    <RichTextEditor
+                      value={content}
+                      onChange={setContent}
+                      placeholder="Treść lekcji..."
+                    />
+                  </Suspense>
                 ) : (
                   <div
                     className="prose prose-sm max-w-none"
@@ -141,9 +236,10 @@ export default function LessonDetailPage() {
                   <>
                     <Button
                       onClick={handleSaveLesson}
+                      disabled={isSaving}
                       className="flex-1"
                     >
-                      Zapisz zmiany
+                      {isSaving ? 'Zapisywanie...' : 'Zapisz zmiany'}
                     </Button>
                     <Button
                       variant="outline"

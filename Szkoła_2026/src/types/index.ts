@@ -38,6 +38,9 @@ export type { Activity as AdminActivity } from './admin'
 // common - canonical MaterialType
 export * from './common'
 
+// user roles and permissions
+export * from './user'
+
 // auth, billing, school, email, notification
 export * from './auth'
 export * from './billing'

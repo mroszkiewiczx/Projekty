@@ -1,1 +1,0 @@
-import{j as e}from"./index-BxlPsj2q.js";function a(){return e.jsxs("div",{className:"p-8",children:[e.jsx("h1",{className:"text-2xl font-bold",children:"Biblioteka"}),e.jsx("p",{className:"text-gray-500 mt-2",children:"Biblioteka materiałów — wkrótce"})]})}export{a as default};

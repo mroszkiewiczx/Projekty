@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 import type { AuthUser } from '@/types/auth'
+import type { UserRole, RolePermissions } from '@/types/user'
+import { ROLE_PERMISSIONS } from '@/types/user'
 
 export interface AuthContextValue {
   user: AuthUser | null
   isLoading: boolean
   isAuthenticated: boolean
+  canPerform: (permission: keyof RolePermissions) => boolean
   signOut: () => Promise<void>
 }
 
@@ -51,13 +54,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe()
   }, [])
 
+  const canPerform = (permission: keyof RolePermissions): boolean => {
+    if (!user) return false
+    const role = user.role as UserRole
+    const perms = ROLE_PERMISSIONS[role]
+    if (!perms) return false
+    const value = perms[permission]
+    return typeof value === 'boolean' ? value : false
+  }
+
   const signOut = async () => {
     await supabase.auth.signOut()
     setUser(null)
   }
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, isAuthenticated: !!user, signOut }}>
+    <AuthContext.Provider value={{ user, isLoading, isAuthenticated: !!user, canPerform, signOut }}>
       {children}
     </AuthContext.Provider>
   )

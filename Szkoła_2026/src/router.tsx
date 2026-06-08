@@ -17,11 +17,21 @@ const LessonGeneratorPageV2 = lazy(() =>
   })),
 )
 const LibraryPage = lazy(() => import('@/pages/library/LibraryPage'))
+const ChatPage = lazy(() =>
+  import('@/pages/chat/ChatPage').then((m) => ({ default: m.ChatPage })),
+)
+const AnalyticsPage = lazy(() =>
+  import('@/pages/analytics/AnalyticsPage').then((m) => ({ default: m.AnalyticsPage })),
+)
 
 // Admin pages — protected, admin-only
+const CurriculumImportPage = lazy(() =>
+  import('@/modules/curriculum/CurriculumUploader').then((m) => ({ default: m.CurriculumUploader })),
+)
 const AdminDashboardPage = lazy(() => import('@/pages/admin/AdminDashboardPage'))
 const TeachersManagementPage = lazy(() => import('@/pages/admin/TeachersManagementPage'))
 const SchoolSettingsPage = lazy(() => import('@/pages/admin/SchoolSettingsPage'))
+const UserManagementPage = lazy(() => import('@/pages/admin/UserManagementPage'))
 
 function PageLoader() {
   return (
@@ -48,6 +58,8 @@ export default function Router() {
           <Route path="/lesson/generator-v2" element={<LessonGeneratorPageV2 />} />
           <Route path="/lesson/:id" element={<LessonDetailPage />} />
           <Route path="/library" element={<LibraryPage />} />
+          <Route path="/chat" element={<ChatPage />} />
+          <Route path="/analytics" element={<AnalyticsPage />} />
         </Route>
 
         {/* Protected admin routes */}
@@ -55,6 +67,8 @@ export default function Router() {
           <Route path="/admin" element={<AdminDashboardPage />} />
           <Route path="/admin/teachers" element={<TeachersManagementPage />} />
           <Route path="/admin/settings" element={<SchoolSettingsPage />} />
+          <Route path="/admin/users" element={<UserManagementPage />} />
+          <Route path="/admin/curriculum-import" element={<CurriculumImportPage />} />
         </Route>
       </Routes>
     </Suspense>

@@ -1,0 +1,1 @@
+import{j as s}from"./vendor-query-rZlX2w7P.js";import"./vendor-react-CT46qExo.js";function a(){return s.jsxs("div",{className:"p-8",children:[s.jsx("h1",{className:"text-2xl font-bold",children:"Ustawienia szkoły"}),s.jsx("p",{className:"text-gray-500 mt-2",children:"Konfiguracja szkoły — wkrótce"})]})}export{a as default};
