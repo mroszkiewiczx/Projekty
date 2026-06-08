@@ -6,7 +6,7 @@ interface LanguageContextValue {
   changeLanguage: (lang: string) => Promise<void>
 }
 
-const LanguageContext = createContext<LanguageContextValue | null>(null)
+export const LanguageContext = createContext<LanguageContextValue | null>(null)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation()
