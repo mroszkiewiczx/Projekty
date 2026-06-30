@@ -9,50 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Deploy to Hostinger via SSH
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOSTINGER_HOST }}
-          port: ${{ secrets.HOSTINGER_PORT }}
-          username: ${{ secrets.HOSTINGER_USER }}
-          key: ${{ secrets.HOSTINGER_SSH_KEY }}
-          script: |
-            set -e
-            echo "📦 Deploying AI School v3..."
-
-            # Clone fresh code
-            echo "📥 Updating code from GitHub..."
-            rm -rf /tmp/aischool-deploy
-            git clone --depth 1 -b main https://github.com/mroszkiewiczx/Projekty.git /tmp/aischool-deploy
-
-            # Copy only aischool-v3 to /docker
-            cp -r /tmp/aischool-deploy/aischool-v3/* /docker/aischool-v3/
-            rm -rf /tmp/aischool-deploy
-
-            cd /docker/aischool-v3
-
-            echo "📥 Installing dependencies..."
-            npm install --prefer-offline
-
-            echo "🔨 Building application..."
-            npm run build
-
-            echo "🐳 Building Docker image..."
-            docker build -t aischool-v3:latest \
-              --build-arg NEXT_PUBLIC_SUPABASE_URL="${SUPABASE_URL}" \
-              --build-arg NEXT_PUBLIC_SUPABASE_ANON_KEY="${SUPABASE_ANON_KEY}" \
-              --build-arg NEXT_PUBLIC_APP_URL="${APP_URL}" \
-              .
-
-            echo "🔄 Restarting container..."
-            docker compose down || true
-            docker compose up -d
-
-            echo "⏳ Waiting for container to start..."
-            sleep 15
-
-            echo "✅ Deployment complete!"
-            docker logs aischool-v3 | tail -10
+      - name: Trigger deployment webhook
+        env:
+          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+        run: |
+          curl -X POST https://aischool.creativecompany.pl/api/webhook/deploy \
+            -H "Content-Type: application/json" \
+            -H "X-Webhook-Secret: $WEBHOOK_SECRET" \
+            -d '{"ref":"main","event":"push"}' \
+            --connect-timeout 10 \
+            --max-time 30 \
+            -v || echo "Webhook trigger sent (async)"
