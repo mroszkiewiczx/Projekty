@@ -10,14 +10,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Trigger deployment webhook
-        env:
-          WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
+      - name: Manual trigger (test)
         run: |
-          curl -X POST https://aischool.creativecompany.pl/api/webhook/deploy \
-            -H "Content-Type: application/json" \
-            -H "X-Webhook-Secret: $WEBHOOK_SECRET" \
-            -d '{"ref":"main","event":"push"}' \
-            --connect-timeout 10 \
-            --max-time 30 \
-            -v || echo "Webhook trigger sent (async)"
+          echo "✅ GitHub Actions would trigger webhook here"
+          echo "For now: Push to main = Deploy via GitHub webhook (when ready)"
+          echo "Deploy config: .github/workflows/deploy.yml"
