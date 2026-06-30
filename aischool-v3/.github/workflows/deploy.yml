@@ -24,7 +24,7 @@ jobs:
             set -e
             echo "📦 Deploying AI School v3..."
 
-            cd /opt/aischool-v3 || cd /home/aischool/aischool-v3 || exit 1
+            cd /docker/aischool-v3
 
             echo "🔄 Pulling latest code..."
             git pull origin main
