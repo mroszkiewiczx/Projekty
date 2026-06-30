@@ -3,9 +3,6 @@ name: Deploy to Hostinger
 on:
   push:
     branches: [main]
-    paths:
-      - 'aischool-v3/**'
-      - '.github/workflows/deploy.yml'
 
 jobs:
   deploy:
