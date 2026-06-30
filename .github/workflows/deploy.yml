@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Deploy to Hostinger via SSH
         uses: appleboy/ssh-action@master
@@ -21,22 +23,16 @@ jobs:
             set -e
             echo "📦 Deploying AI School v3..."
 
-            # Configure git
-            git config --global --add safe.directory /docker/aischool-v3
+            # Clone fresh code
+            echo "📥 Updating code from GitHub..."
+            rm -rf /tmp/aischool-deploy
+            git clone --depth 1 -b main https://github.com/mroszkiewiczx/Projekty.git /tmp/aischool-deploy
 
-            # Initialize git if needed
-            if [ ! -d "/docker/aischool-v3/.git" ]; then
-              echo "📥 Initializing git repository..."
-              cd /docker/aischool-v3
-              git init
-              git remote add origin https://github.com/mroszkiewiczx/Projekty.git
-            fi
+            # Copy only aischool-v3 to /docker
+            cp -r /tmp/aischool-deploy/aischool-v3/* /docker/aischool-v3/
+            rm -rf /tmp/aischool-deploy
 
             cd /docker/aischool-v3
-
-            echo "🔄 Pulling latest code..."
-            git fetch origin main
-            git reset --hard origin/main
 
             echo "📥 Installing dependencies..."
             npm install --prefer-offline
