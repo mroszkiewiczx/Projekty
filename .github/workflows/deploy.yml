@@ -21,10 +21,19 @@ jobs:
             set -e
             echo "📦 Deploying AI School v3..."
 
+            # Initialize git if needed
+            if [ ! -d "/docker/aischool-v3/.git" ]; then
+              echo "📥 Initializing git repository..."
+              cd /docker/aischool-v3
+              git init
+              git remote add origin https://github.com/mroszkiewiczx/Projekty.git
+            fi
+
             cd /docker/aischool-v3
 
             echo "🔄 Pulling latest code..."
-            git pull origin main
+            git fetch origin main
+            git reset --hard origin/main
 
             echo "📥 Installing dependencies..."
             npm install --prefer-offline
